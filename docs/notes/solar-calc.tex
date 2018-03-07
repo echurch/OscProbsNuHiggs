@@ -54,7 +54,7 @@ Solar neutrinos  interact  on our necessarily over-dense CNB. This write-up show
 
 To calculate the interaction rate we want to appeal to the optical theorem, 
 \begin{equation}
-\sigma = 4\pi/k \Im (f(\theta=0)) \label{eqnot}
+\sigma = 4\pi/k \cdot \Im (f(\theta=0)) \label{eqnot}
 \end{equation}. 
 
 That is because in our paper we have calculated matrix elements in the very forward direction and come up with some tidy expressions (eqn 8 and 9 of the paper) for the scattering amplitudes. If, instead, we need to fully calculate the xsection from scratch we'll need to go back to the 4 diagrams and sum them with general kinematics, square them and integrate, blah blah blah. It'd be non-trivial. 
@@ -71,7 +71,7 @@ Namely, we can hope to get at the total cross-section we need by using eqn 9 of 
 \section{MFT in the house}
 We have the above expression~\ref{eqnf2} for the differential cross-section. The general one from Fermi's Golden Rule for 2-particles-goes-to-2-particles cross-section is
 \begin{equation}
-\frac{d\sigma}{d\Omega} = \frac{1}{(2\pi)^24E_1E_2(\Phi_1+\Phi_2)} |M_{fi}|^2 \frac{d^3k_3}{2E_3} \frac{d^3k}{2E} *\delta(p+k_2+k_3+k).
+\frac{d\sigma}{d\Omega} = \frac{1}{(2\pi)^24E_1E_2(\Phi_1+\Phi_2)} |M_{fi}|^2 \frac{d^3k_3}{2E_3} \frac{d^3k_4}{2E_4} *\delta(p+k_2+k_3+k).
 \end{equation}
 
 1,2,3,4 are the incoming neutrino, CNB neutrino, outgoing neutrino, leftover CNB neutrino. The $\Phi$s are the fluxes of 1 and 2. Our boy MFT on pg37 of~\cite{mft}integrates this out for a very light incoming particle, just as in our solar $\nu_e$ beam.
@@ -92,9 +92,9 @@ the imaginary parts up to the coefficient, and evaluate at $\theta=0$
 \Im (f(\theta=0)) = \frac{1}{8\pi}\frac{E_3}{mE_1}\Im(M_{fi}(\theta=0))
 \end{equation}
 
-$E_3 = m_i$, $k=E_1$, $M_{fi}=[2^4E_1E_2E_3E_4]^{1/2}*T$, $E_2=m_i, E_4=k$
+$E_3 = k$, $k=E_1$, $M_{fi}=[2^4E_1E_2E_3E_4]^{1/2}*T$, $E_2=m_i, E_4=m_i$
 
-MFT's $M_{fi}$ here is unitless. $T$ is our script $M$ in our paper of eqns 8 and 9. So, finally, we use the optical theorem from equation~\ref{eqnot} and eqn9 from our paper.
+MFT's $M_{fi}$ here is unitless. $T$ is our $M$ in our paper of eqns 8 and 9, I claim, from examining MFT's pg 16-17. Please check! So, finally, we use the optical theorem from equation~\ref{eqnot} of this note and eqn9 from our paper.
 
 \begin{equation}
 \sigma=\frac{1}{2k^2} \cdot \mathrm{eqn9} \cdot [2^4E_1E_2E_3E_4]^{1/2}
