@@ -1,0 +1,128 @@
+
+%\RequirePackage{lineno}
+\documentclass[reprint,onecolumn,superscriptaddress,preprintnumbers]{revtex4}%
+\usepackage[a4paper]{geometry}
+%\usepackage{draftwatermark}
+%\SetWatermarkScale{5}
+%\SetWatermarkLightness{0.9}
+\usepackage{graphicx}
+%\usepackage{subfig}
+\usepackage{bm}
+\usepackage{latexsym}
+\usepackage{epsf}
+\usepackage{rotating}
+\usepackage{epsfig,graphics,rotate,xcolor}
+\usepackage{wrapfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%%\usepackage{subfigure}
+\usepackage{array,hhline,dcolumn}%
+\usepackage[normalem]{ulem}
+\usepackage{url}
+\usepackage{verbatim}
+
+%\usepackage[justification=justified,singlelinecheck=false]{caption}
+\setcounter{MaxMatrixCols}{30}
+%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{Version=5.50.0.2953}
+%TCIDATA{LastRevised=Monday, December 14, 2009 10:40:56}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=Manual}
+%TCIDATA{Language=American English}
+%BeginMSIPreambleData
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+%EndMSIPreambleData
+\bibliographystyle{plain}
+
+
+
+\begin{document}
+
+\title{Solar nu xsection on overdense CNB}
+
+\author{Eric D.~Church}
+
+
+\begin{abstract} 
+Solar neutrinos  interact  on our necessarily over-dense CNB. This write-up shows the calculation of that rate. A jupyter notebook also exists in this repo to place a limit in $n$-$g$ space so as not to diminish the solar $\nu_e$ flux beyond 1\% or so of its very well-known value, which parameter space is not tenable.
+\end{abstract}
+\maketitle
+
+\section{Motivation}
+
+To calculate the interaction rate we want to appeal to the optical theorem, 
+\begin{equation}
+\sigma = 4\pi/k \Im (f(\theta=0)) \label{eqnot}
+\end{equation}. 
+
+That is because in our paper we have calculated matrix elements in the very forward direction and come up with some tidy expressions (eqn 8 and 9 of the paper) for the scattering amplitudes. If, instead, we need to fully calculate the xsection from scratch we'll need to go back to the 4 diagrams and sum them with general kinematics, square them and integrate, blah blah blah. It'd be non-trivial. 
+
+\section{Intro}
+See~\cite{optthm} for a very nice elaboration of the optical theorem. Basically, one writes a plane wave $\psi=\exp^{ikz}$, decomposes in legendre polynomials and tacks on extra phases for the out-going part of the wave. The differential cross-section is calculated with $\psi^*\psi$.
+\begin{equation}
+\frac{d\sigma}{d\Omega} = |f(\theta,\phi)|^2 \label{eqnf2}
+\end{equation}
+An expression is shown in that reference for $f(\theta,\phi)$ which we don't list here. But, because it contains legendre polynomials, when one calculates $\sigma_T = \int d\Omega |f(\theta,\phi)|^2$ there's a completeness/orthogonality relation that leads straight away to eqn~\ref{eqnot}.
+
+Namely, we can hope to get at the total cross-section we need by using eqn 9 of our paper.
+
+\section{MFT in the house}
+We have the above expression~\ref{eqnf2} for the differential cross-section. The general one from Fermi's Golden Rule for 2-particles-goes-to-2-particles cross-section is
+\begin{equation}
+\frac{d\sigma}{d\Omega} = \frac{1}{(2\pi)^24E_1E_2(\Phi_1+\Phi_2)} |M_{fi}|^2 \frac{d^3k_3}{2E_3} \frac{d^3k}{2E} *\delta(p+k_2+k_3+k).
+\end{equation}
+
+1,2,3,4 are the incoming neutrino, CNB neutrino, outgoing neutrino, leftover CNB neutrino. The $\Phi$s are the fluxes of 1 and 2. Our boy MFT on pg37 of~\cite{mft}integrates this out for a very light incoming particle, just as in our solar $\nu_e$ beam.
+\begin{equation}
+\frac{d\sigma}{d\Omega} = \frac{1}{64\pi^2}(\frac{E_3}{ME_1})^2 |M_{fi}|^2
+\end{equation}
+The $M$  the target particle, is our CNB neutrino $m_i$. $E_3$ is our out-going neutrino k. 
+
+\section{Extracting $f(\theta=0)$}
+Let's write this as 
+\begin{equation}
+\frac{d\sigma}{d\Omega} = \frac{1}{64\pi^2}(\frac{E_3}{ME_1})^2[\Re(M_{fi})^2+\Im(M_{fi})^2].
+\end{equation}
+
+If we similarly express~\ref{eqnf2} as the sum of real and imaginary parts squared and recognize that the only complex phase is held in $f$ and $M_{fi}$, then we can equate
+the imaginary parts up to the coefficient, and evaluate at $\theta=0$
+\begin{equation}
+\Im (f(\theta=0)) = \frac{1}{8\pi}\frac{E_3}{mE_1}\Im(M_{fi}(\theta=0))
+\end{equation}
+
+$E_3 = m_i$, $k=E_1$, $M_{fi}=[2^4E_1E_2E_3E_4]^{1/2}*T$, $E_2=m_i, E_4=k$
+
+MFT's $M_{fi}$ here is unitless. $T$ is our script $M$ in our paper of eqns 8 and 9. So, finally, we use equation the optical theorem~\ref{eqnot} and eqn9 from our paper.
+
+\begin{equation}
+\sigma=\frac{1}{2k^2} \cdot \mathrm{eqn9} \cdot [2^4E_1E_2E_3E_4]^{1/2}
+\end{equation}
+
+Where eqn9 is the expression for the imaginary part of scattering matrix $M$ from our paper. So, finally
+
+\begin{equation}
+\sigma=\frac{2m_i}{k} \cdot \mathrm{eqn9}
+\end{equation}
+
+
+\begin{figure}[h]
+\begin{centering}
+\includegraphics[width=0.49\columnwidth]{../..//solar-constraint.png}
+\caption{The allowed region is below and left of the center line. The lines show the limit for requiring that our CNB only consumes (0.1,1.0,10.0) times 1\% of the solar $nu$ flux.}
+\end{centering}
+\end{figure}
+
+
+ 
+
+\bibliographystyle{apsrev}   
+%%\bibliography{clean-sensbib}
+\begin{thebibliography}{9}
+\bibitem {optthm} https://quantummechanics.ucsd.edu/ph130a/130\_notes/node441.html
+\bibitem {mft} http://www.hep.phy.cam.ac.uk/\~thomson/partIIIparticles/handouts/Handout\_1\_2011.pdf  
+\end{thebibliography}
+
+\end{document}
+
